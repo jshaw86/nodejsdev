@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -e
+
+TAG="${TRAVIS_TAG:-latest}"
+PROJECT="jshaw86/nodejsdev"
+
+# Build image
+docker build -t $PROJECT:$TAG .
+docker tag $PROJECT:$TAG $PROJECT:$TAG
+echo "Pushing $PROJECT:$TAG"
+sleep 5 
+docker push $PROJECT:$TAG
+
